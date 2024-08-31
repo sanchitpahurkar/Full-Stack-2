@@ -1,3 +1,5 @@
+import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { ThemedText } from '@/components/ThemedText';
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, ActivityIndicator, Text, StyleSheet } from 'react-native';
 
@@ -58,7 +60,11 @@ const Index: React.FC = () => {
   );
 
   return (
-    <FlatList
+    <>
+      <View>
+        <Text style={styles.pageTitle}>Infinite Scroll Page</Text>
+      </View>
+      <FlatList
       data={data}
       renderItem={renderItem}
       keyExtractor={(item) => item.id.toString()}
@@ -66,6 +72,8 @@ const Index: React.FC = () => {
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0.5}
     />
+    </>
+    
   );
 };
 
@@ -78,6 +86,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
+    
+
+  },
+  pageTitle: {
+    fontSize: 30,
+    textAlign:'center',
+    fontWeight:'bold',
+    marginVertical: 20
   },
   loader: {
     marginTop: 10,
